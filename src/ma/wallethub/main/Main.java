@@ -38,7 +38,7 @@ public class Main {
         String threshold = extractArg(args, "--threshold");
         String accesslog = extractArg(args, "--accesslog");
 
-        boolean saveLog = false;
+        boolean saveLog = true;
         boolean saveLogLineSynathese = true;
         boolean saveLogSynathese = true;
         logFacade.parseAndAnalyse(accesslog, saveLog, saveLogLineSynathese, saveLogSynathese, startDate, duration, threshold!=null?Integer.parseInt(threshold):null);
