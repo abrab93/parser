@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 import ma.wallethub.bean.LogLine;
 import ma.wallethub.bean.LogSynthese;
 import ma.wallethub.service.LogLineService;
-import ma.wallethub.service.LogLineSyntheseService;
 import ma.wallethub.service.LogFacade;
 import ma.wallethub.service.LogSyntheseService;
+import ma.wallethub.service.LogLineHourService;
 
 /**
  *
@@ -25,7 +25,7 @@ public class LogFacadeImpl implements LogFacade {
     private static final Logger LOG = Logger.getLogger(LogFacadeImpl.class.getName());
 
     private LogLineService logLineService = new LogLineServiceImpl();
-    private LogLineSyntheseService logLineSynthesService = new LogLineSyntheseServiceImpl();
+    private LogLineHourService logLineSynthesService = new LogLineHourServiceImpl();
     private LogSyntheseService logSyntheseService = new LogSyntheseServiceImpl();
 
     @Override

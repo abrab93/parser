@@ -27,27 +27,41 @@ public class Main {
             LOG.log(Level.SEVERE, "Argument number expected to be at least 3 but founded {0}", args == null ? 0 : args.length);
         }
 
-        boolean logLine = extractArgAsBool(args, "--clearLogLine");
-        boolean logLineSynthese = extractArgAsBool(args, "--clearLogLineSynthese");
-        boolean logSynthese = extractArgAsBool(args, "--clearLogSynthese");
-
-        logFacade.clear(logLine, logLineSynthese, logSynthese);
-
         String startDate = prepareDate(extractArg(args, "--startDate"));
         Integer duration = prepareDuration(extractArg(args, "--duration"));
         String threshold = extractArg(args, "--threshold");
         String accesslog = extractArg(args, "--accesslog");
 
-        boolean saveLog = true;
+        boolean clearLogLine = extractArgAsBool(args, "--clearLogLine", accesslog);
+        boolean clearLogLineHour = extractArgAsBool(args, "--clearLogLineHour", accesslog);
+        boolean clearLogSynthese = extractArgAsBool(args, "--clearLogSynthese", accesslog);
+
+        boolean saveLog = extractArgAsBoolSave(args, "--saveogLine");
         boolean saveLogLineSynathese = true;
         boolean saveLogSynathese = true;
-        logFacade.parseAndAnalyse(accesslog, saveLog, saveLogLineSynathese, saveLogSynathese, startDate, duration, threshold!=null?Integer.parseInt(threshold):null);
+
+        logFacade.clear(clearLogLine, clearLogLineHour, clearLogSynthese);
+        logFacade.parseAndAnalyse(accesslog, saveLog, saveLogLineSynathese, saveLogSynathese, startDate, duration, threshold != null ? Integer.parseInt(threshold) : null);
     }
 
-    private static Boolean extractArgAsBool(String[] args, String flag) {
+    private static Boolean extractArgAsBool(String[] args, String flag, String accesslog) {
+        if (accesslog == null) {
+            return false;
+        }
+        return extractArgAsBoolClear(args, flag);
+    }
+
+    private static Boolean extractArgAsBoolClear(String[] args, String flag) {
+        return extractArgAsBool(args, flag, true);
+    }
+    private static Boolean extractArgAsBoolSave(String[] args, String flag) {
+        return extractArgAsBool(args, flag, false);
+    }
+
+    private static Boolean extractArgAsBool(String[] args, String flag, boolean defaultResult) {
         String extractArg = extractArg(args, flag);
         if (extractArg == null) {
-            return true;
+            return defaultResult;
         } else {
             return Boolean.getBoolean(extractArg);
         }

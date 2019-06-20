@@ -3,8 +3,8 @@
   <persistence-unit name="parserPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>ma.wallethub.bean.LogLine</class>
-    <class>ma.wallethub.bean.LogLineSynthese</class>
     <class>ma.wallethub.bean.LogSynthese</class>
+    <class>ma.wallethub.bean.LogLineHour</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/parser?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

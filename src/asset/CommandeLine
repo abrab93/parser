@@ -1,20 +1,15 @@
 
 ************************************************
-Command: java -jar parser.jar --accesslog=C:\\Users\\YounesSama\\Downloads\\Java_MySQL_Test\\access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
+Command: java -jar parser.jar --accesslog=C:\\Users\\YounesSama\\Downloads\\Java_MySQL_Test\\access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200 --saveogLine=true
 Comment: As expected 192.168.11.231 have been printed amoung result
-
 Result:
 startDate=2017-01-01 15:00:00.000, duration=Hourly, hreshold=232, ip=192.168.106.134
 startDate=2017-01-01 15:00:00.000, duration=Hourly, hreshold=211, ip=192.168.11.231
 
 
 *************************
-Command: java -jar parser.jar --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500 --clearLogLineSynthese=false 
-Comment: i added --clearLogLineSynthese=false to not clear what we have already imported
-(by default the system clear all data if you like to change this behavour,
-please go to  ma.wallethub.main.Main class and  change extractArgAsBool method :
-instead of  if (extractArg == null) { return true; } 
-put if (extractArg == null) { return false; } 
+Command: java -jar parser.jar --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500
+Comment: 
 
 Result:
 startDate=2017-01-01 00:00:00.000, duration=Daily, hreshold=747, ip=192.168.129.191
@@ -36,7 +31,7 @@ startDate=2017-01-01 00:00:00.000, duration=Daily, hreshold=513, ip=192.168.102.
 
 
 *****************************************
-Command: java -jar parser.jar --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200 --clearLogLineSynthese=false 
+Command: java -jar parser.jar --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
 Comment: 
 1) the same command as the first one but without log path, which mean it will use the data 
 already saved in data base.

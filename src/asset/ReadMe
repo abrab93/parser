@@ -1,3 +1,16 @@
-Before inserting 116 484 log data, i grouped data by ip and hour before saving it in the data base.
-Therefore, i've only 19 256 line of data, instead of 116 484 (83,469% of data optimmisation)
+Before inserting 116 484 log data (ma.wallethub.bean.LogLine object), 
+i grouped data by ip and hour before saving it in the data base 
+(ma.wallethub.bean.LogLineHour).
+Therefore, i've only 19 256 line of data (LogLineHour object),
+instead of 116 484 (LogLine object); which mean 83,469% of data optimmisation.
+
+The system offer the possibility to save LogLine object by using --saveogLine=true,
+otherwise the system don't save LogLine object for optimisation puprpose.
+
+the system analyse LogLineHour object in order to extract hourly or daily duration.
+by default all analyses requiered for hourly log is already stored in LogLineHour,
+thus i don't need any additional manipulation.
+
+On the other hand, daily analyse requiere more manipulation (sql) in order 
+to extract suitable data.
 

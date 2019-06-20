@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import ma.wallethub.bean.LogLineSynthese;
+import ma.wallethub.bean.LogLineHour;
 import ma.wallethub.bean.LogSynthese;
 import ma.wallethub.dao.LogSyntheseDao;
 import ma.wallethub.dao.impl.LogSyntheseDaoImpl;
-import ma.wallethub.service.LogLineSyntheseService;
 import ma.wallethub.service.LogSyntheseService;
 import ma.wallethub.util.DateUtil;
+import ma.wallethub.service.LogLineHourService;
 
 /**
  *
@@ -25,7 +25,7 @@ public class LogSyntheseServiceImpl implements LogSyntheseService {
 
     private static final Logger LOG = Logger.getLogger(LogSyntheseServiceImpl.class.getName());
     private LogSyntheseDao logSyntheseDao = new LogSyntheseDaoImpl();
-    private LogLineSyntheseService logLineSyntheseService = new LogLineSyntheseServiceImpl();
+    private LogLineHourService logLineSyntheseService = new LogLineHourServiceImpl();
 
     public int clear() {
         return logSyntheseDao.clear();
@@ -41,8 +41,8 @@ public class LogSyntheseServiceImpl implements LogSyntheseService {
                 logSyntheses.add(new LogSynthese(dateStartAsDate, duration, Integer.parseInt(object[1].toString()), object[0].toString()));
             }
         }else{
-            List<LogLineSynthese> logLineSyntheses = logLineSyntheseService.findByDateSynthes(dateStart, threshold);
-            for (LogLineSynthese logLineSynthese : logLineSyntheses) {
+            List<LogLineHour> logLineSyntheses = logLineSyntheseService.findByDateSynthes(dateStart, threshold);
+            for (LogLineHour logLineSynthese : logLineSyntheses) {
                 logSyntheses.add(new LogSynthese(dateStartAsDate, duration, logLineSynthese.getSumPerHour(), logLineSynthese.getIp()));
             }
         }
