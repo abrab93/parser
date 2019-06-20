@@ -36,7 +36,7 @@ public class Main {
         boolean clearLogLineHour = extractArgAsBool(args, "--clearLogLineHour", accesslog);
         boolean clearLogSynthese = extractArgAsBool(args, "--clearLogSynthese", accesslog);
 
-        boolean saveLog = extractArgAsBoolSave(args, "--saveogLine");
+        boolean saveLog = false;
         boolean saveLogLineSynathese = true;
         boolean saveLogSynathese = true;
 

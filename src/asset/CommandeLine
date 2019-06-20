@@ -1,7 +1,9 @@
 
 ************************************************
-Command: java -jar parser.jar --accesslog=C:\\Users\\YounesSama\\Downloads\\Java_MySQL_Test\\access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200 --saveogLine=true
+Command: java -jar parser.jar --accesslog=C:\\Users\\YounesSama\\Downloads\\Java_MySQL_Test\\access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
 Comment: As expected 192.168.11.231 have been printed amoung result
+in main (of ma.wallethub.main.Main), we could set saveLog to true if we'd like to save LogLine object 
+(by default I save only LogLineHour which is a synthes of LogLine)
 Result:
 startDate=2017-01-01 15:00:00.000, duration=Hourly, hreshold=232, ip=192.168.106.134
 startDate=2017-01-01 15:00:00.000, duration=Hourly, hreshold=211, ip=192.168.11.231
@@ -36,11 +38,7 @@ Comment:
 1) the same command as the first one but without log path, which mean it will use the data 
 already saved in data base.
 
-2)i added --clearLogLineSynthese=false to not clear what we have already imported
-(by default the system clear all data if you like to change this behavour,
-please go to  ma.wallethub.main.Main class and  change extractArgAsBool method :
-instead of  if (extractArg == null) { return true; } 
-put if (extractArg == null) { return false; } 
+2)if no path of log file is provided, the default behaour is to not clear data
 
 Result: (the same as the first command)
 startDate=2017-01-01 15:00:00.000, duration=Hourly, hreshold=232, ip=192.168.106.134
